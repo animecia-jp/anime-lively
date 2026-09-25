@@ -1,0 +1,1033 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+
+  <title>Anime Lively — あなたに、次の一作。</title>
+
+  <meta
+    name="description"
+    content="Anime Lively — アニメを探す、評価する、語る。そして自分だけの一作を見つける。"
+  >
+
+  <meta name="theme-color" content="#070b14">
+
+  <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+  <!-- =========================
+       HEADER
+  ========================== -->
+  <header class="top">
+    <nav class="nav">
+
+      <div class="logo">
+        Anime <i>Lively</i>
+      </div>
+
+      <div class="navlinks">
+        <button onclick="scrollToId('discover')">
+          発見
+        </button>
+
+        <button onclick="scrollToId('rank')">
+          ランキング
+        </button>
+
+        <button onclick="scrollToId('reviews')">
+          レビュー
+        </button>
+
+        <button onclick="scrollToId('community')">
+          コミュニティ
+        </button>
+      </div>
+
+      <div class="search">
+        <span>⌕</span>
+
+        <input
+          id="search"
+          type="search"
+          placeholder="作品・人物・ジャンルを検索"
+          oninput="searchSite(this.value)"
+          autocomplete="off"
+        >
+      </div>
+
+      <button
+        class="ghost"
+        onclick="openModal('login')"
+      >
+        ログイン
+      </button>
+
+      <div
+        class="avatar"
+        onclick="openModal('login')"
+        title="マイページ"
+      >
+        A
+      </div>
+
+    </nav>
+  </header>
+
+
+  <!-- =========================
+       MAIN
+  ========================== -->
+  <main class="wrap">
+
+
+    <!-- =========================
+         HERO
+    ========================== -->
+    <section class="hero">
+
+      <div>
+
+        <div class="eyebrow">
+          ANIME DISCOVERY PLATFORM
+        </div>
+
+        <h1>
+          あなたに、<br>
+          次の一作。
+        </h1>
+
+        <p>
+          Anime Livelyは、作品を探すだけのサイトではありません。
+          あなたの評価・視聴履歴・好みの変化から
+          「本当に合う作品」を見つけ、
+          観る、評価する、語るまでをひとつにつなげます。
+        </p>
+
+        <div class="actions">
+
+          <button
+            class="primary"
+            onclick="scrollToId('personal')"
+          >
+            あなたへのおすすめ
+          </button>
+
+          <button
+            class="secondary"
+            onclick="openModal('diagnosis')"
+          >
+            アニメ診断を始める
+          </button>
+
+        </div>
+
+      </div>
+
+
+      <!-- TODAY'S PICK -->
+      <div class="heroCard">
+
+        <div class="eyebrow">
+          TODAY'S PICK
+        </div>
+
+        <h2>
+          シュタインズ・ゲート
+        </h2>
+
+        <div class="match">
+          94%
+        </div>
+
+        <div class="meter">
+          <i></i>
+        </div>
+
+        <div class="mini">
+
+          <span>
+            あなたとの相性
+          </span>
+
+          <b>
+            非常に高い
+          </b>
+
+          <span>
+            推薦理由
+          </span>
+
+          <b>
+            SF・伏線・ミステリー
+          </b>
+
+          <span>
+            類似高評価
+          </span>
+
+          <b>
+            12作品
+          </b>
+
+          <span>
+            未視聴
+          </span>
+
+          <b>
+            おすすめ
+          </b>
+
+        </div>
+
+        <button
+          class="primary"
+          style="width:100%;margin-top:18px"
+          onclick="openAnime('シュタインズ・ゲート')"
+        >
+          なぜおすすめ？
+        </button>
+
+      </div>
+
+    </section>
+
+
+    <!-- =========================
+         PERSONAL RECOMMENDATION
+    ========================== -->
+    <section
+      class="section"
+      id="personal"
+    >
+
+      <div class="sectionHead">
+
+        <div>
+
+          <h2>
+            あなたへのおすすめ
+          </h2>
+
+          <p>
+            あなたのAnime DNAを中心に、
+            複数の推薦モデルを組み合わせています。
+          </p>
+
+        </div>
+
+        <button
+          class="ghost"
+          onclick="toast('推薦モデルを更新しました')"
+        >
+          嗜好を更新 ↻
+        </button>
+
+      </div>
+
+
+      <!-- Recommendation modes -->
+      <div class="tabs">
+
+        <button class="tab active">
+          今のあなた
+        </button>
+
+        <button class="tab">
+          隠れた名作
+        </button>
+
+        <button class="tab">
+          新しいジャンル
+        </button>
+
+        <button class="tab">
+          短時間で見られる
+        </button>
+
+        <button class="tab">
+          今期
+        </button>
+
+      </div>
+
+
+      <!-- Recommendation cards -->
+      <div
+        class="grid"
+        id="recGrid"
+      ></div>
+
+    </section>
+
+
+    <!-- =========================
+         ANIME DNA
+    ========================== -->
+    <section
+      class="section feature"
+      id="dna"
+    >
+
+      <!-- Taste profile -->
+      <div class="panel">
+
+        <div class="sectionHead">
+
+          <div>
+
+            <h2>
+              Anime DNA
+            </h2>
+
+            <p>
+              あなたの評価・視聴行動から推定した嗜好プロファイル
+            </p>
+
+          </div>
+
+          <button
+            class="ghost"
+            onclick="openModal('dna')"
+          >
+            詳細
+          </button>
+
+        </div>
+
+
+        <div class="dna">
+
+          <div class="barrow">
+
+            <span>
+              SF・科学
+            </span>
+
+            <div class="bar">
+              <i style="width:92%"></i>
+            </div>
+
+            <b>
+              92
+            </b>
+
+          </div>
+
+
+          <div class="barrow">
+
+            <span>
+              ミステリー
+            </span>
+
+            <div class="bar">
+              <i style="width:88%"></i>
+            </div>
+
+            <b>
+              88
+            </b>
+
+          </div>
+
+
+          <div class="barrow">
+
+            <span>
+              世界観
+            </span>
+
+            <div class="bar">
+              <i style="width:86%"></i>
+            </div>
+
+            <b>
+              86
+            </b>
+
+          </div>
+
+
+          <div class="barrow">
+
+            <span>
+              シリアス
+            </span>
+
+            <div class="bar">
+              <i style="width:79%"></i>
+            </div>
+
+            <b>
+              79
+            </b>
+
+          </div>
+
+
+          <div class="barrow">
+
+            <span>
+              感動
+            </span>
+
+            <div class="bar">
+              <i style="width:76%"></i>
+            </div>
+
+            <b>
+              76
+            </b>
+
+          </div>
+
+
+          <div class="barrow">
+
+            <span>
+              日常
+            </span>
+
+            <div class="bar">
+              <i style="width:29%"></i>
+            </div>
+
+            <b>
+              29
+            </b>
+
+          </div>
+
+        </div>
+
+      </div>
+
+
+      <!-- Recommendation explanation -->
+      <div class="panel">
+
+        <div class="eyebrow">
+          WHY THIS PICK?
+        </div>
+
+        <h3>
+          推薦の理由を説明します
+        </h3>
+
+        <p
+          style="
+            color:#9aa9be;
+            line-height:1.8
+          "
+        >
+          「シュタインズ・ゲート」や
+          「サマータイムレンダリング」など、
+          伏線・SF・ミステリーを含む作品への評価が高いため、
+          この系統の未視聴作品を優先しています。
+        </p>
+
+        <div class="notice">
+
+          推薦は固定されたジャンルだけでなく、
+          最近の評価・視聴完了・興味なし・
+          似た嗜好のユーザーなど複数のシグナルを
+          組み合わせて更新されます。
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- =========================
+         DISCOVERY
+    ========================== -->
+    <section
+      class="section"
+      id="discover"
+    >
+
+      <div class="sectionHead">
+
+        <div>
+
+          <h2>
+            発見
+          </h2>
+
+          <p>
+            「有名だから」ではなく
+            「あなたに合うから」を見つける。
+          </p>
+
+        </div>
+
+      </div>
+
+
+      <div
+        class="grid"
+        id="discoverGrid"
+      ></div>
+
+    </section>
+
+
+    <!-- =========================
+         RANKING
+    ========================== -->
+    <section
+      class="section"
+      id="rank"
+    >
+
+      <div class="sectionHead">
+
+        <div>
+
+          <h2>
+            ランキング
+          </h2>
+
+          <p>
+            人気・評価・勢い・コア人気を分離して表示。
+          </p>
+
+        </div>
+
+        <button
+          class="secondary"
+          onclick="openModal('rank')"
+        >
+          すべて見る
+        </button>
+
+      </div>
+
+
+      <div class="layout">
+
+
+        <!-- Ranking list -->
+        <div
+          class="list"
+          id="rankList"
+        ></div>
+
+
+        <!-- Ranking explanation -->
+        <aside class="panel">
+
+          <h3>
+            Anime Lively 指標
+          </h3>
+
+          <p class="small">
+
+            少人数の極端な評価だけで順位が決まらないよう、
+            評価人数や継続性などを別々に扱います。
+
+          </p>
+
+
+          <div class="notice">
+
+            <b>
+              Core Popularity
+            </b>
+
+            <br>
+
+            知名度はまだ高くないが、
+            視聴者から強く支持される作品を発見。
+
+          </div>
+
+
+          <div
+            class="notice"
+            style="margin-top:10px"
+          >
+
+            <b>
+              Trend
+            </b>
+
+            <br>
+
+            レビュー増加・視聴増加・評価上昇などから
+            「今の勢い」を表示。
+
+          </div>
+
+        </aside>
+
+      </div>
+
+    </section>
+
+
+    <!-- =========================
+         REVIEWS
+    ========================== -->
+    <section
+      class="section"
+      id="reviews"
+    >
+
+      <div class="sectionHead">
+
+        <div>
+
+          <h2>
+            注目レビュー
+          </h2>
+
+          <p>
+            作品評価だけでなく、
+            レビューから作品の魅力を発見。
+          </p>
+
+        </div>
+
+      </div>
+
+
+      <div class="feature">
+
+
+        <!-- Review feed -->
+        <div
+          class="feed"
+          id="reviewFeed"
+        ></div>
+
+
+        <!-- Review analysis -->
+        <div class="panel">
+
+          <h3>
+            レビューから見る作品特徴
+          </h3>
+
+          <div class="dna">
+
+
+            <div class="barrow">
+
+              <span>
+                世界観
+              </span>
+
+              <div class="bar">
+                <i style="width:91%"></i>
+              </div>
+
+              <b>
+                91
+              </b>
+
+            </div>
+
+
+            <div class="barrow">
+
+              <span>
+                キャラ
+              </span>
+
+              <div class="bar">
+                <i style="width:86%"></i>
+              </div>
+
+              <b>
+                86
+              </b>
+
+            </div>
+
+
+            <div class="barrow">
+
+              <span>
+                伏線
+              </span>
+
+              <div class="bar">
+                <i style="width:82%"></i>
+              </div>
+
+              <b>
+                82
+              </b>
+
+            </div>
+
+
+            <div class="barrow">
+
+              <span>
+                音楽
+              </span>
+
+              <div class="bar">
+                <i style="width:74%"></i>
+              </div>
+
+              <b>
+                74
+              </b>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- =========================
+         COMMUNITY
+    ========================== -->
+    <section
+      class="section"
+      id="community"
+    >
+
+      <div class="sectionHead">
+
+        <div>
+
+          <h2>
+            コミュニティ
+          </h2>
+
+          <p>
+            レビュー、掲示板、クラブ、投票、チャレンジ。
+          </p>
+
+        </div>
+
+      </div>
+
+
+      <div class="grid">
+
+
+        <!-- Forum -->
+        <div class="panel">
+
+          <div class="eyebrow">
+            FORUM
+          </div>
+
+          <h3>
+            今期アニメ感想スレ
+          </h3>
+
+          <p class="small">
+            ネタバレ範囲を自動表示・
+            エピソード単位で分離。
+          </p>
+
+          <button
+            class="secondary"
+            onclick="toast('掲示板を開きました')"
+          >
+            掲示板を見る
+          </button>
+
+        </div>
+
+
+        <!-- Club -->
+        <div class="panel">
+
+          <div class="eyebrow">
+            CLUB
+          </div>
+
+          <h3>
+            SF・考察アニメ部
+          </h3>
+
+          <p class="small">
+            共通の趣味を持つユーザーで作品を発見。
+          </p>
+
+          <button
+            class="secondary"
+            onclick="toast('クラブ一覧を開きました')"
+          >
+            クラブを見る
+          </button>
+
+        </div>
+
+
+        <!-- Challenge -->
+        <div class="panel">
+
+          <div class="eyebrow">
+            CHALLENGE
+          </div>
+
+          <h3>
+            今月5本、新ジャンル開拓
+          </h3>
+
+          <p class="small">
+            3 / 5 完了　　60%
+          </p>
+
+          <div class="meter">
+            <i style="width:60%"></i>
+          </div>
+
+          <button
+            class="secondary"
+            onclick="toast('チャレンジに参加しました')"
+          >
+            参加する
+          </button>
+
+        </div>
+
+
+        <!-- Awards -->
+        <div class="panel">
+
+          <div class="eyebrow">
+            AWARDS
+          </div>
+
+          <h3>
+            Anime Lively Awards 2026
+          </h3>
+
+          <p class="small">
+            作品・キャラ・声優・エピソードを
+            ユーザー投票。
+          </p>
+
+          <button
+            class="secondary"
+            onclick="toast('投票ページを開きました')"
+          >
+            投票する
+          </button>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- =========================
+         DATABASE
+    ========================== -->
+    <section class="section">
+
+      <div class="sectionHead">
+
+        <div>
+
+          <h2>
+            作品データベース
+          </h2>
+
+          <p>
+            作品・エピソード・キャラクター・
+            声優・スタッフ・制作会社・原作・
+            配信情報を一体管理。
+          </p>
+
+        </div>
+
+        <button
+          class="secondary"
+          onclick="openModal('database')"
+        >
+          データベースを見る
+        </button>
+
+      </div>
+
+
+      <div class="grid">
+
+
+        <!-- Anime -->
+        <div class="panel">
+
+          <h3>
+            作品
+          </h3>
+
+          <b style="font-size:26px">
+            24,861
+          </b>
+
+          <p class="small">
+            独自ID・別名・関連作品・原作
+          </p>
+
+        </div>
+
+
+        <!-- Character -->
+        <div class="panel">
+
+          <h3>
+            キャラクター
+          </h3>
+
+          <b style="font-size:26px">
+            180,420
+          </b>
+
+          <p class="small">
+            人気投票・推し・声優連携
+          </p>
+
+        </div>
+
+
+        <!-- Reviews -->
+        <div class="panel">
+
+          <h3>
+            レビュー
+          </h3>
+
+          <b style="font-size:26px">
+            1.8M+
+          </b>
+
+          <p class="small">
+            ネタバレ管理・いいね・コメント
+          </p>
+
+        </div>
+
+
+        <!-- Users -->
+        <div class="panel">
+
+          <h3>
+            ユーザー
+          </h3>
+
+          <b style="font-size:26px">
+            —
+          </b>
+
+          <p class="small">
+            公開プロフィール・フォロー・活動
+          </p>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+  </main>
+
+
+  <!-- =========================
+       FOOTER
+  ========================== -->
+  <footer class="footer">
+
+    <div
+      style="
+        display:flex;
+        justify-content:space-between;
+        gap:20px;
+        flex-wrap:wrap
+      "
+    >
+
+      <div>
+
+        <b style="color:#dce6f7">
+          Anime Lively
+        </b>
+
+        <br>
+
+        あなたに、次の一作。
+
+      </div>
+
+
+      <div>
+
+        利用規約　
+        プライバシー　
+        お問い合わせ　
+        著作権窓口　
+        広告掲載
+
+      </div>
+
+
+      <div>
+        © Anime Lively
+      </div>
+
+    </div>
+
+  </footer>
+
+
+  <!-- =========================
+       MODAL
+  ========================== -->
+  <div
+    class="modal"
+    id="modal"
+  >
+
+    <div class="modalbox">
+
+      <button
+        class="close"
+        onclick="closeModal()"
+      >
+        閉じる
+      </button>
+
+      <div id="modalContent"></div>
+
+    </div>
+
+  </div>
+
+
+  <!-- =========================
+       TOAST
+  ========================== -->
+  <div
+    class="toast"
+    id="toast"
+  ></div>
+
+
+  <!-- =========================
+       JAVASCRIPT
+  ========================== -->
+  <script src="js/app.js"></script>
+
+</body>
+</html>
